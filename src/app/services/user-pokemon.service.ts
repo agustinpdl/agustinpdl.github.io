@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Move, Pokemon } from 'pokenode-ts';
+import { Move, Pokemon, Stats } from 'pokenode-ts';
 import { PokedexService } from './pokedex.service';
 
 @Injectable({
@@ -21,5 +21,14 @@ export class UserPokemonService {
   public pokemonMoveSet: Move[] = [];
   private _pokemon?: Pokemon;
   constructor(private _pkApi: PokedexService) { }
+  public levelUpPokemon(p: userPokemon) {
 
+  }
+
+}
+export type userPokemon = {
+  level: number;
+  pokemon: Pokemon;
+  attacks: Move[];
+  stats: Stats
 }

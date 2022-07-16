@@ -14,7 +14,7 @@ export class CombatEncounterComponent implements OnInit {
   enemyPokemon: Pokemon | null = null;
 
   constructor(private _pkapi: PokedexService, private _pkservice: UserPokemonService) {
-    this._pkapi.getPokemonById(this.generateRandomNumer(1, 880))
+    this._pkapi.getPokemonById(1)
       .then((e) => {
         this.userPokemon = e;
         this._pkservice.pokemon = e;

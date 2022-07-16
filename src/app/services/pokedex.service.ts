@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Move, MoveClient, Pokemon, PokemonClient } from 'pokenode-ts';
+import { ProcessingService } from './processing.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,19 +17,22 @@ export class PokedexService {
   /**
    * Default constructor
    */
-  public constructor() { }
+  public constructor(private _processing: ProcessingService) { }
   /**
    * Get Pokemon by name
    * @param name 
    * @returns 
    */
   public async getPokemonByName(name: string): Promise<Pokemon> {
-    return await this.pokemon.getPokemonByName(name);
+    this._processing.addPending();
+    return await this.pokemon.getPokemonByName(name).finally(() => this._processing.removePending());
   }
   public async getPokemonById(id: number): Promise<Pokemon> {
-    return await this.pokemon.getPokemonById(id);
+    this._processing.addPending();
+    return await this.pokemon.getPokemonById(id).finally(() => this._processing.removePending());;
   }
   public async getMoveByName(name: string): Promise<Move> {
-    return await this.move.getMoveByName(name);
+    this._processing.addPending();
+    return await this.move.getMoveByName(name).finally(() => this._processing.removePending());;
   }
 }
