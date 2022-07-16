@@ -22,7 +22,8 @@ export class UserPokemonService {
   private _pokemon?: Pokemon;
   constructor(private _pkApi: PokedexService) { }
   public levelUpPokemon(p: userPokemon) {
-
+    p.level++;
+    
   }
 
 }
