@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Pokemon, PokemonClient } from 'pokenode-ts';
+import { Move, MoveClient, Pokemon, PokemonClient } from 'pokenode-ts';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokedexService {
   /**
-   * API CONNECTION
+   * API CONNECTION TO POKEMON CLIENT
    */
-  private api = new PokemonClient();
+  private pokemon = new PokemonClient();
+  /**
+   * API CONNECTION TO POKEMON CLIENT
+   */
+  private move = new MoveClient();
   /**
    * Default constructor
    */
@@ -18,8 +22,13 @@ export class PokedexService {
    * @param name 
    * @returns 
    */
-  public async getPokemonByName(name: string): Promise<Pokemon | void> {
-    console.log("got in!")
-    return await this.api.getPokemonByName(name).catch((err) => console.error(err));
+  public async getPokemonByName(name: string): Promise<Pokemon> {
+    return await this.pokemon.getPokemonByName(name);
+  }
+  public async getPokemonById(id: number): Promise<Pokemon> {
+    return await this.pokemon.getPokemonById(id);
+  }
+  public async getMoveByName(name: string): Promise<Move> {
+    return await this.move.getMoveByName(name);
   }
 }

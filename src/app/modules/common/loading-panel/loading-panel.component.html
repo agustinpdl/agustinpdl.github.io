@@ -1,16 +1,17 @@
-<div class="background" *ngIf="true">
-  <div class="card">
-    <!-- <p>Loading!</p>
-    <div class="spinner">
-      <div class="center"></div>
-      <div class="bottom"></div>
-      <div class="h-line"></div>
-    </div> -->
-    <div class="center-on-page">
+<div *ngIf="loading" @fadeIn>
 
-      <div class="pokeball">
-        <div class="pokeball__button"></div>
-      </div>
+  <div class="background">
+      <!-- <p>Loading!</p>
+        <div class="spinner">
+          <div class="center"></div>
+          <div class="bottom"></div>
+          <div class="h-line"></div>
+        </div> -->
+      <div class="center-on-page">
+
+        <div [class.pokeball]="loading">
+          <div class="pokeball__button"></div>
+        </div>
 
     </div>
   </div>

@@ -1,3 +1,4 @@
+import { animate, query, style, transition, trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProcessingService } from 'src/app/services/processing.service';
@@ -5,7 +6,19 @@ import { ProcessingService } from 'src/app/services/processing.service';
 @Component({
   selector: 'loading-panel',
   templateUrl: './loading-panel.component.html',
-  styleUrls: ['./loading-panel.component.scss']
+  styleUrls: ['./loading-panel.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', query('.background', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in-out', style({ opacity: 1 })),
+      ])),
+      transition(':leave', query('.background', [
+        style({ opacity: 1 }),
+        animate('300ms ease-in-out', style({ opacity: 0 })),
+      ]))
+    ])
+  ]
 })
 export class LoadingPanelComponent implements OnInit, OnDestroy {
   /**
